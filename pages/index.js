@@ -3,6 +3,8 @@ import Image from 'next/image';
 import { PageLayout } from '../components/PageLayout';
 import styles from '../styles/Home.module.css';
 
+const apiKey = process.env.APIKEY;
+
 export default function Home({ articles }) {
   return (
     <PageLayout title='Tech News'>
@@ -31,8 +33,7 @@ export default function Home({ articles }) {
 export async function getStaticProps() {
   try {
     const response = await fetch(
-      // 'https://newsapi.org/v2/everything?q=tesla&from=2023-07-06&sortBy=publishedAt&apiKey=2f15ff4fb9594d90b6236d4711a1c0ea'
-      'https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=2f15ff4fb9594d90b6236d4711a1c0ea'
+      `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=${apiKey}`
     );
 
     if (!response.ok) {
